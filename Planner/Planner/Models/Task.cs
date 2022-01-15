@@ -45,7 +45,7 @@ namespace Planner.Models
         }
 
 
-        Task() : this ("empty", DateTime.Now, TaskPriority.Low, false) { }
+        public Task() : this ("empty", DateTime.Now, TaskPriority.Low, false) { }
 
         public Task(string text, DateTime date, TaskPriority priority, bool isDone)
         {

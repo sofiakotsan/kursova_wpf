@@ -2,20 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using Planner.Models;
 
 namespace Planner.ViewModels
 {
     class PlannerVM : VMBase
     {
-        private TodoList taskList;
+        // private TodoList taskList;
 
-        public TodoList TaskList
+        /*public TodoList TaskList
+        {
+            get { return taskList; }
+            set { taskList = value; }
+        }*/
+
+        private ObservableCollection<TaskVM> taskList;
+
+        public ObservableCollection<TaskVM> TaskList
         {
             get { return taskList; }
             set { taskList = value; }
         }
+
 
         private Dictionary<string, TaskPriority> priorities;
         //public IEnumerable<string> Priorities { get => priorities.Keys; }
@@ -40,7 +50,7 @@ namespace Planner.ViewModels
         public PlannerVM()
         {
 
-            TaskList = new TodoList();
+            //TaskList = new TodoList();
 
             priorities = new Dictionary<string, TaskPriority>()
             {
@@ -49,6 +59,16 @@ namespace Planner.ViewModels
                 {"High", TaskPriority.High }
             };
 
+
+            TaskList = new ObservableCollection<TaskVM>()
+            {
+                new TaskVM(new Task()),
+                new TaskVM(new Task()),
+                new TaskVM(new Task()),
+                new TaskVM(new Task()),
+                new TaskVM(new Task()),
+                new TaskVM(new Task()),
+            };
 
           /*  MyProperty = new string[]
             {

@@ -57,7 +57,7 @@
                     </Grid.RowDefinitions>
                  
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView ItemsSource="{Binding Path=TaskList.Tasks }">
+                        <ListView ItemsSource="{Binding TaskList }">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -73,8 +73,8 @@
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <CheckBox Grid.Column="0" IsChecked="{ Binding IsDone }"/>
-                                        <TextBlock Grid.Column="1" Text="{ Binding Text }" />
+                                        <CheckBox Grid.Column="0" IsChecked="{ Binding IsDone, Mode=TwoWay}"/>
+                                        <TextBox Grid.Column="1" Text="{ Binding Text }" />
                                         <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
                                                                                         AncestorType={x:Type Window}}, 
                                                                                         Path=DataContext.Priorities}"></ComboBox>
