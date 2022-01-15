@@ -1,0 +1,8 @@
+*.sln
+*.csproj
+*.config
+*.pdb
+/Planner/.vs
+/Planner/Planner/bin
+/Planner/Planner/obj
+/Planner/Planner/Properties
