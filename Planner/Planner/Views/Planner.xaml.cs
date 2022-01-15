@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Planner.ViewModels;
 
 namespace Planner.Views
 {
@@ -22,6 +23,8 @@ namespace Planner.Views
         public Planner()
         {
             InitializeComponent();
+            this.DataContext = new PlannerVM();
+
         }
     }
 }

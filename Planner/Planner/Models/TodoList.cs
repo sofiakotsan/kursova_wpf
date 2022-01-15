@@ -16,6 +16,14 @@ namespace Planner.Models
             private set { tasks = value; }
         }
 
+        /*private List<string> tasks;
+
+        public List<string> Tasks
+        {
+            get { return tasks; }
+            private set { tasks = value; }
+        }*/
+
         public TodoList()
         {
             ReadTasks();
@@ -33,6 +41,15 @@ namespace Planner.Models
                 new Task("task 6", DateTime.Now, TaskPriority.High),
                 new Task("task 7", DateTime.Now, TaskPriority.Low)
             };
+
+            /*Tasks = new List<string>()
+            {
+                "dsdsgdsgs",
+                "dsdsgd dsfsgs",
+                "dsdsgdsgs",
+                "dsdsgdsgs",
+                "dsdsgdsddfgs",
+            };*/
         }
 
     }

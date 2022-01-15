@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="Planner" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-            planner
-        </TextBlock>
+        <ListView ItemsSource="{Binding Path=TaskList.Tasks }">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text }" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
