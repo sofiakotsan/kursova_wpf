@@ -58,9 +58,29 @@
                  
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ListView ItemsSource="{Binding Path=TaskList.Tasks }">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Text }" />
+                                    <Grid HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <CheckBox Grid.Column="0" IsChecked="{ Binding IsDone }"/>
+                                        <TextBlock Grid.Column="1" Text="{ Binding Text }" />
+                                        <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                        AncestorType={x:Type Window}}, 
+                                                                                        Path=DataContext.Priorities}"></ComboBox>
+                                        <Button Grid.Column="3">Delete</Button>
+
+                                    </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>

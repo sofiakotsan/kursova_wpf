@@ -16,6 +16,7 @@ namespace Planner.Models
     {
         private string text;
         private DateTime date;
+        private TaskPriority priority;
 
         public string Text
         {
@@ -29,21 +30,29 @@ namespace Planner.Models
             set { date = value; }
         }
 
-        private TaskPriority priority;
-
         public TaskPriority Priority
         {
             get { return priority; }
             set { priority = value; }
         }
 
-        Task() : this ("empty", DateTime.Now, TaskPriority.Low) { }
+        private bool isDone;
 
-        public Task(string text, DateTime date, TaskPriority priority)
+        public bool IsDone
+        {
+            get { return isDone; }
+            set { isDone = value; }
+        }
+
+
+        Task() : this ("empty", DateTime.Now, TaskPriority.Low, false) { }
+
+        public Task(string text, DateTime date, TaskPriority priority, bool isDone)
         {
             Text = text;
             Date = date;
             Priority = priority;
+            IsDone = isDone;
         }
 
     }

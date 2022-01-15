@@ -17,13 +17,24 @@ namespace Planner.ViewModels
             set { taskList = value; }
         }
 
-        private string[] myVar;
+        private Dictionary<string, TaskPriority> priorities;
+        //public IEnumerable<string> Priorities { get => priorities.Keys; }
+
+        public IEnumerable<TaskPriority> Priorities
+        {
+            get
+            {
+                return Enum.GetValues(typeof(TaskPriority)).Cast<TaskPriority>();
+            }
+        }
+
+        /*private string[] myVar;
 
         public string[] MyProperty
         {
             get { return myVar; }
             set { myVar = value; }
-        }
+        }*/
 
 
         public PlannerVM()
@@ -31,7 +42,15 @@ namespace Planner.ViewModels
 
             TaskList = new TodoList();
 
-            MyProperty = new string[]
+            priorities = new Dictionary<string, TaskPriority>()
+            {
+                {"Low", TaskPriority.Low },
+                {"Medium", TaskPriority.Medium },
+                {"High", TaskPriority.High }
+            };
+
+
+          /*  MyProperty = new string[]
             {
                 "testdsfdsfds",
                 "tesrrgfgftdsfdsfds",
@@ -39,7 +58,7 @@ namespace Planner.ViewModels
                 "testdsf dfg dsfds",
                 "testdsfddfg sfds",
                 "testdsfdsfds"
-            };
+            };*/
         }
 
 

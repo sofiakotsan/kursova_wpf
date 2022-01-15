@@ -33,13 +33,13 @@ namespace Planner.Models
         {
             Tasks = new List<Task>()
             {
-                new Task("task 1", DateTime.Now, TaskPriority.Low),
-                new Task("task 2", DateTime.Now, TaskPriority.High),
-                new Task("task 3", DateTime.Now, TaskPriority.Medium),
-                new Task("task 4", DateTime.Now, TaskPriority.Low),
-                new Task("task 5", DateTime.Now, TaskPriority.Medium),
-                new Task("task 6", DateTime.Now, TaskPriority.High),
-                new Task("task 7", DateTime.Now, TaskPriority.Low)
+                new Task("task 1", DateTime.Now, TaskPriority.Low, false),
+                new Task("task 2", DateTime.Now, TaskPriority.High, true),
+                new Task("task 3", DateTime.Now, TaskPriority.Medium, true),
+                new Task("task 4", DateTime.Now, TaskPriority.Low, false),
+                new Task("task 5", DateTime.Now, TaskPriority.Medium, true),
+                new Task("task 6", DateTime.Now, TaskPriority.High, false),
+                new Task("task 7", DateTime.Now, TaskPriority.Low, true)
             };
 
             /*Tasks = new List<string>()
