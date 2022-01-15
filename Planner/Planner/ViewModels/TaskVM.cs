@@ -57,6 +57,11 @@ namespace Planner.ViewModels
             }
         }
 
+        public int Id
+        {
+            get { return task.Id; }
+        }
+
         public TaskVM( Task task)
         {
             Task = task;

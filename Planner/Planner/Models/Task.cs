@@ -17,6 +17,8 @@ namespace Planner.Models
         private string text;
         private DateTime date;
         private TaskPriority priority;
+        private int id;
+
 
         public string Text
         {
@@ -42,6 +44,12 @@ namespace Planner.Models
         {
             get { return isDone; }
             set { isDone = value; }
+        }
+
+        public int Id
+        {
+            get { return id; }
+            private set { id = value; }
         }
 
 

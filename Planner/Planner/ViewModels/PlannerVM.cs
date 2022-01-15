@@ -26,9 +26,7 @@ namespace Planner.ViewModels
             set { taskList = value; }
         }
 
-
         private Dictionary<string, TaskPriority> priorities;
-        //public IEnumerable<string> Priorities { get => priorities.Keys; }
 
         public IEnumerable<TaskPriority> Priorities
         {
@@ -38,19 +36,23 @@ namespace Planner.ViewModels
             }
         }
 
-        /*private string[] myVar;
-
-        public string[] MyProperty
+        private RelayCommand addCommand;
+        public RelayCommand AddCommand
         {
-            get { return myVar; }
-            set { myVar = value; }
-        }*/
-
+            get
+            {
+                return addCommand;/*??
+                  (addCommand = new RelayCommand(obj =>
+                  {
+                      Phone phone = new Phone();
+                      Phones.Insert(0, phone);
+                      SelectedPhone = phone;
+                  }));*/
+            }
+        }
 
         public PlannerVM()
         {
-
-            //TaskList = new TodoList();
 
             priorities = new Dictionary<string, TaskPriority>()
             {
@@ -59,6 +61,13 @@ namespace Planner.ViewModels
                 {"High", TaskPriority.High }
             };
 
+            addCommand = new RelayCommand(obj =>
+            {
+                TaskList.Add(new TaskVM(new Task()));
+                /*TaskVM phone = new Phone();
+                Phones.Insert(0, phone);
+                SelectedPhone = phone;*/
+            });
 
             TaskList = new ObservableCollection<TaskVM>()
             {
@@ -70,15 +79,8 @@ namespace Planner.ViewModels
                 new TaskVM(new Task()),
             };
 
-          /*  MyProperty = new string[]
-            {
-                "testdsfdsfds",
-                "tesrrgfgftdsfdsfds",
-                "testdsfdsfg fdfds",
-                "testdsf dfg dsfds",
-                "testdsfddfg sfds",
-                "testdsfdsfds"
-            };*/
+            
+
         }
 
 

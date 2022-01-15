@@ -89,7 +89,7 @@
 
                 <!-- Row 5 -->
                 <WrapPanel Grid.Row="4">
-                    <Button>+</Button>
+                    <Button Command="{ Binding AddCommand }">+</Button>
                 </WrapPanel>
             </Grid>
 
