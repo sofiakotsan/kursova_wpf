@@ -56,21 +56,13 @@
                         </RowDefinition>
                     </Grid.RowDefinitions>
                  
-                    <ScrollViewer >
-                        <ListView>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
-                            <ListViewItem>text</ListViewItem>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding Path=TaskList.Tasks }">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Text }" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </ScrollViewer>
                 </Grid>
