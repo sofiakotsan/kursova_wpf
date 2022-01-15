@@ -5,14 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Planner.Views"
         mc:Ignorable="d"
-        Title="Planner" Height="450" Width="800">
-    <Grid>
-        <ListView ItemsSource="{Binding Path=TaskList.Tasks }">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Text }" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+        Title="Planner" Height="600" Width="900">
+    <DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="50"/>
+                    <RowDefinition MaxHeight="40"/>
+                    <RowDefinition MaxHeight="40"/>
+                    <RowDefinition/>
+                    <RowDefinition MaxHeight="70"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0">1 January 2022</TextBlock>
+                
+                <WrapPanel Grid.Row="1" HorizontalAlignment="Right">
+                    <TextBlock>Sort by:</TextBlock>
+                    <ComboBox>
+                        <ComboBoxItem IsSelected="True">Added</ComboBoxItem>
+                        <ComboBoxItem>Priority</ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+                
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="1">Task</TextBlock>
+                    <TextBlock Grid.Column="2">Priority</TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*">
+                            
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                 
+                    <ScrollViewer >
+                        <ListView>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                            <ListViewItem>text</ListViewItem>
+                        </ListView>
+                    </ScrollViewer>
+                </Grid>
+
+                <WrapPanel Grid.Row="4">
+                    <Button>+</Button>
+                </WrapPanel>
+                
+            </Grid>
+            
+        </Grid>
+    </DockPanel>
 </Window>
