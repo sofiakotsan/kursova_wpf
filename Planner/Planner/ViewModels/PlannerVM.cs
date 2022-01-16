@@ -13,24 +13,22 @@ namespace Planner.ViewModels
 {
     class PlannerVM : VMBase
     {
-        // private TodoList taskList;
-
-        /*public TodoList TaskList
-        {
-            get { return taskList; }
-            set { taskList = value; }
-        }*/
-
         private ObservableCollection<TaskVM> taskList;
+        private ObservableCollection<TaskVM> currentTaskList;
+        private RelayCommand addCommand;
+        private RelayCommand deleteCommand;
+        private DateTime selectedDate;
 
         public ObservableCollection<TaskVM> TaskList
         {
             get { return taskList; }
             set { taskList = value; }
         }
-
-        private Dictionary<string, TaskPriority> priorities;
-
+        public ObservableCollection<TaskVM> CurrentTaskList
+        {
+            get { return currentTaskList; }
+            set { currentTaskList = value; }
+        }
         public IEnumerable<TaskPriority> Priorities
         {
             get
@@ -38,23 +36,13 @@ namespace Planner.ViewModels
                 return Enum.GetValues(typeof(TaskPriority)).Cast<TaskPriority>();
             }
         }
-
-        private RelayCommand addCommand;
         public RelayCommand AddCommand
         {
             get
             {
-                return addCommand;/*??
-                  (addCommand = new RelayCommand(obj =>
-                  {
-                      Phone phone = new Phone();
-                      Phones.Insert(0, phone);
-                      SelectedPhone = phone;
-                  }));*/
+                return addCommand;
             }
         }
-
-        private RelayCommand deleteCommand;
         public RelayCommand DeleteCommand
         {
             get
@@ -62,33 +50,18 @@ namespace Planner.ViewModels
                 return deleteCommand;
             }
         }
-
+        public DateTime SelectedDate
+        {
+            get { return selectedDate; }
+            set 
+            { 
+                selectedDate = value;
+                OnPropertyChanged("isEdited");
+                SetTasksByDate(value);
+            }
+        }
         public PlannerVM()
         {
-
-            priorities = new Dictionary<string, TaskPriority>()
-            {
-                {"Low", TaskPriority.Low },
-                {"Medium", TaskPriority.Medium },
-                {"High", TaskPriority.High }
-            };
-
-            addCommand = new RelayCommand(obj =>
-            {
-                TaskList.Add(new TaskVM(new Task()));
-                /*TaskVM phone = new Phone();
-                Phones.Insert(0, phone);
-                SelectedPhone = phone;*/
-            });
-
-            deleteCommand = new RelayCommand(obj =>
-            {
-                if (MessageBox.Show("Are you sure you want to delete this task?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    taskList.Remove((TaskVM)obj);
-                }
-            });
-
             TaskList = new ObservableCollection<TaskVM>()
             {
                 new TaskVM(new Task("task 1")),
@@ -99,7 +72,40 @@ namespace Planner.ViewModels
                 new TaskVM(new Task("task 6")),
             };
 
-            
+            CurrentTaskList = new ObservableCollection<TaskVM>();
+
+            SelectedDate = DateTime.Today;
+            SetTasksByDate(SelectedDate);
+
+            addCommand = new RelayCommand(AddTask);
+            deleteCommand = new RelayCommand(DeleteTask);
+        }
+
+        private void AddTask(object obj)
+        {
+            TaskVM newTask = new TaskVM(new Task("New Task"));
+            TaskList.Add(newTask);
+            CurrentTaskList.Add(newTask);
+        }
+        private void DeleteTask(object obj)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this task?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                CurrentTaskList.Remove((TaskVM)obj);
+                TaskList.Remove((TaskVM)obj);
+            }
+        }
+        private void SetTasksByDate(DateTime date)
+        {
+            CurrentTaskList.Clear();
+
+            foreach (var task in TaskList)
+            {
+                if (task.Date == date)
+                {
+                    CurrentTaskList.Add(task);
+                }
+            }
 
         }
 

@@ -62,9 +62,23 @@ namespace Planner.ViewModels
             get { return task.Id; }
         }
 
-        public TaskVM( Task task)
+        private bool isEdited;
+
+        public bool IsEdited
+        {
+            get { return isEdited; }
+            set 
+            { 
+                isEdited = value;
+                OnPropertyChanged("isEdited");
+            }
+        }
+
+
+        public TaskVM(Task task, bool isEdited = false)
         {
             Task = task;
+            IsEdited = isEdited;
         }
 
     }

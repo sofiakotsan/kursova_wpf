@@ -53,8 +53,8 @@ namespace Planner.Models
         }
 
 
-        public Task() : this ("empty", DateTime.Now, TaskPriority.Low, false) { }
-        public Task(string text) : this (text, DateTime.Now, TaskPriority.Low, false) { }
+        public Task() : this ("empty", DateTime.Today, TaskPriority.Low, false) { }
+        public Task(string text) : this (text, DateTime.Today, TaskPriority.Low, false) { }
         public Task(string text, DateTime date) : this (text, date, TaskPriority.Low, false) { }
         public Task(string text, DateTime date, TaskPriority priority) : this (text, date, priority, false) { }
 
