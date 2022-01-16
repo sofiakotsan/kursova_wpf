@@ -78,7 +78,9 @@
                                         <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
                                                                                         AncestorType={x:Type Window}}, 
                                                                                         Path=DataContext.Priorities}"></ComboBox>
-                                        <Button Grid.Column="3">Delete</Button>
+                                        <Button Grid.Column="3" CommandParameter="{ Binding Path=.}"  Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                        AncestorType={x:Type Window}}, 
+                                                                                        Path=DataContext.DeleteCommand}">Delete</Button>
 
                                     </Grid>
                                 </DataTemplate>

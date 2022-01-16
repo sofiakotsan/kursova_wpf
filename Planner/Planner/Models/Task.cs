@@ -17,7 +17,7 @@ namespace Planner.Models
         private string text;
         private DateTime date;
         private TaskPriority priority;
-        private int id;
+        private string id;
 
 
         public string Text
@@ -46,7 +46,7 @@ namespace Planner.Models
             set { isDone = value; }
         }
 
-        public int Id
+        public string Id
         {
             get { return id; }
             private set { id = value; }
@@ -54,14 +54,19 @@ namespace Planner.Models
 
 
         public Task() : this ("empty", DateTime.Now, TaskPriority.Low, false) { }
+        public Task(string text) : this (text, DateTime.Now, TaskPriority.Low, false) { }
+        public Task(string text, DateTime date) : this (text, date, TaskPriority.Low, false) { }
+        public Task(string text, DateTime date, TaskPriority priority) : this (text, date, priority, false) { }
 
         public Task(string text, DateTime date, TaskPriority priority, bool isDone)
         {
+            Id = Guid.NewGuid().ToString("N");
             Text = text;
             Date = date;
             Priority = priority;
             IsDone = isDone;
         }
+
 
     }
 }

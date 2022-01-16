@@ -6,6 +6,9 @@ using System.Text;
 using System.Collections.ObjectModel;
 using Planner.Models;
 
+using System.Windows;
+
+
 namespace Planner.ViewModels
 {
     class PlannerVM : VMBase
@@ -51,6 +54,15 @@ namespace Planner.ViewModels
             }
         }
 
+        private RelayCommand deleteCommand;
+        public RelayCommand DeleteCommand
+        {
+            get
+            {
+                return deleteCommand;
+            }
+        }
+
         public PlannerVM()
         {
 
@@ -69,14 +81,22 @@ namespace Planner.ViewModels
                 SelectedPhone = phone;*/
             });
 
+            deleteCommand = new RelayCommand(obj =>
+            {
+                if (MessageBox.Show("Are you sure you want to delete this task?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    taskList.Remove((TaskVM)obj);
+                }
+            });
+
             TaskList = new ObservableCollection<TaskVM>()
             {
-                new TaskVM(new Task()),
-                new TaskVM(new Task()),
-                new TaskVM(new Task()),
-                new TaskVM(new Task()),
-                new TaskVM(new Task()),
-                new TaskVM(new Task()),
+                new TaskVM(new Task("task 1")),
+                new TaskVM(new Task("task 2")),
+                new TaskVM(new Task("task 3")),
+                new TaskVM(new Task("task 4")),
+                new TaskVM(new Task("task 5")),
+                new TaskVM(new Task("task 6")),
             };
 
             

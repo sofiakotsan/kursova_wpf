@@ -57,7 +57,7 @@ namespace Planner.ViewModels
             }
         }
 
-        public int Id
+        public string Id
         {
             get { return task.Id; }
         }
@@ -66,5 +66,6 @@ namespace Planner.ViewModels
         {
             Task = task;
         }
+
     }
 }
