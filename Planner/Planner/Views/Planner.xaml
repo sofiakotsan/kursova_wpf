@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Planner.Views"
         mc:Ignorable="d"
-        Title="Planner" Height="600" Width="900">
-    <DockPanel>
+        Title="Planner" Height="600" Width="900"
+        FontSize="{ StaticResource RegularTextSize }"
+        FontFamily="{ StaticResource MainFont }"
+        Foreground="{ StaticResource MainTextColor }">
+    <Border Background="{ StaticResource PlannerBackground }" Padding="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -25,7 +28,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Row 1 -->
-                <TextBlock Grid.Row="0">1 January 2022</TextBlock>
+                <TextBlock Grid.Row="0" Text="{Binding SelectedDate, StringFormat=D }"></TextBlock>
 
                 <!-- Row 2 -->
                 <WrapPanel Grid.Row="1" HorizontalAlignment="Right">
@@ -106,5 +109,5 @@
             </Grid>
 
         </Grid>
-    </DockPanel>
+    </Border>
 </Window>

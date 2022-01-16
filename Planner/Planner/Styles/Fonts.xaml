@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <FontFamily x:Key="MainFont">..\Resources\Fonts\Raleway-Regular.ttf#Raleway</FontFamily>
+    <FontFamily x:Key="AccentFont">..\Resources\Fonts\NotoSerif-Regular.ttf#Noto Serif</FontFamily>
+
+    <System:Double x:Key="RegularTextSize">16</System:Double>
+
+
+</ResourceDictionary>
