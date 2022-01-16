@@ -5,7 +5,8 @@
     <FontFamily x:Key="MainFont">..\Resources\Fonts\Raleway-Regular.ttf#Raleway</FontFamily>
     <FontFamily x:Key="AccentFont">..\Resources\Fonts\NotoSerif-Regular.ttf#Noto Serif</FontFamily>
 
-    <System:Double x:Key="RegularTextSize">16</System:Double>
+    <System:Double x:Key="RegularFontSize">16</System:Double>
+    <System:Double x:Key="TitleFontSize">22</System:Double>
 
 
 </ResourceDictionary>

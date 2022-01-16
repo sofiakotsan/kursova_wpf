@@ -6,7 +6,8 @@
         <GradientStop Color="#CDEEF0" Offset="1"/>
     </LinearGradientBrush>
 
+    <SolidColorBrush x:Key="ThemeColor" Color="#CDF0EA"/>
     <SolidColorBrush x:Key="MainTextColor" Color="#797979"/>
-    <SolidColorBrush x:Key="DarkAccentTextColor" Color="#007C67"/>
+    <SolidColorBrush x:Key="DarkAccentColor" Color="#007C67"/>
 
 </ResourceDictionary>
