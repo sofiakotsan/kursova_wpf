@@ -27,6 +27,13 @@
         </Style.Setters>
     </Style>
 
+    <Style TargetType="{ x:Type TextBox }">
+        <Style.Setters>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="4"/>
+        </Style.Setters>
+    </Style>
    
 
 </ResourceDictionary>

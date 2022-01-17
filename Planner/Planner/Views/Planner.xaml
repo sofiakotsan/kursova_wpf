@@ -47,18 +47,29 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
                             <RowDefinition/>
+                            <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="30"/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="1" Grid.Row="0">Task</TextBlock>
-                        <TextBlock Grid.Column="2" Grid.Row="0">Priority</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="0" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">Task</TextBlock>
+                        <TextBlock Grid.Column="2" Grid.Row="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">Priority</TextBlock>
 
-                        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
-                            <ListView ItemsSource="{Binding CurrentTaskList }">
+                        <ScrollViewer Grid.Row="1" Grid.Column="0" 
+                                      Grid.ColumnSpan="4"
+                                      VerticalScrollBarVisibility="Auto" 
+                                      Padding="10 3">
+                            <ListView ItemsSource="{Binding CurrentTaskList }"
+                                    BorderBrush="Transparent"
+                                    Foreground="Transparent">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListViewItem}">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -66,7 +77,7 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid HorizontalAlignment="Stretch">
+                                        <Grid HorizontalAlignment="Stretch" Height="30">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="30"/>
                                                 <ColumnDefinition Width="*"/>
@@ -74,21 +85,30 @@
                                                 <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <CheckBox Grid.Column="0" IsChecked="{ Binding IsDone, Mode=TwoWay}"/>
-                                            <TextBox Grid.Column="1" Text="{ Binding Text }"/>
-                                            <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
-                                                                                        AncestorType={x:Type Window}}, 
-                                                                                        Path=DataContext.Priorities}"></ComboBox>
-                                            <Button Grid.Column="3" CommandParameter="{ Binding Path=.}"  Command="{Binding RelativeSource={RelativeSource FindAncestor,
-                                                                                        AncestorType={x:Type Window}}, 
-                                                                                        Path=DataContext.DeleteCommand}">Delete</Button>
+                                            <CheckBox Grid.Column="0" 
+                                                    IsChecked="{ Binding IsDone, Mode=TwoWay}" 
+                                                    VerticalAlignment="Center"/>
+                                            <Border CornerRadius="10" Grid.Column="1" BorderThickness="1" BorderBrush="Transparent">
+                                                <TextBox Text="{ Binding Text, Mode=TwoWay }"/>
+                                            </Border>
+                                            <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority, Mode=TwoWay }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType={x:Type Window}}, 
+                                                                                    Path=DataContext.Priorities}"></ComboBox>
+                                            <Button Grid.Column="3" 
+                                                CommandParameter="{ Binding Path=.}"  
+                                                Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType={x:Type Window}}, 
+                                                                                    Path=DataContext.DeleteCommand}"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent">
+                                                <Image Source="/../Resources/Images/delete-button.png" Height="15" Opacity="0.5"/>
+                                            </Button>
 
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </ScrollViewer>
-
                     </Grid>
                 </Border>
                 
