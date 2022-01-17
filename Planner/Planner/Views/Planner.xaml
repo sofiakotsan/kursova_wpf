@@ -24,7 +24,6 @@
                     <RowDefinition MaxHeight="40"/>
 
                     <RowDefinition/>
-                    <RowDefinition MaxHeight="70"/>
                 </Grid.RowDefinitions>
 
                 <!-- Row 1 -->
@@ -47,13 +46,13 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
                             <RowDefinition/>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="70"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="40"/>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="45"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="1" Grid.Row="0" 
@@ -109,16 +108,23 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </ScrollViewer>
+
+                        <Grid Grid.Row="2" Grid.ColumnSpan="4">
+                            <Border CornerRadius="10">
+                                <Button Command="{ Binding AddCommand }"
+                                    Style="{ StaticResource AddButtonStyle }"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Margin="20 0">+</Button>
+                            </Border>
+                        </Grid>
+                        
                     </Grid>
                 </Border>
                 
 
                 <!-- Row 4 -->
-                <WrapPanel Grid.Row="4">
-                    <Button Command="{ Binding AddCommand }">
-
-                        +</Button>
-                </WrapPanel>
+                
             </Grid>
 
             <!-- Calendar Section -->
