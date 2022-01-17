@@ -22,7 +22,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition MaxHeight="50"/>
                     <RowDefinition MaxHeight="40"/>
-                    <RowDefinition MaxHeight="40"/>
+
                     <RowDefinition/>
                     <RowDefinition MaxHeight="70"/>
                 </Grid.RowDefinitions>
@@ -42,59 +42,58 @@
                 </WrapPanel>
 
                 <!-- Row 3 -->
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Column="1">Task</TextBlock>
-                    <TextBlock Grid.Column="2">Priority</TextBlock>
-                </Grid>
+                <Border Grid.Row="2" Style="{ StaticResource TaskBoard }">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                <!-- Row 4 -->
-                <Grid Grid.Row="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*">
-                            
-                        </RowDefinition>
-                    </Grid.RowDefinitions>
-                 
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView ItemsSource="{Binding CurrentTaskList }">
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="{x:Type ListViewItem}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalAlignment="Stretch">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="30"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="100"/>
-                                            <ColumnDefinition Width="30"/>
-                                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Grid.Row="0">Task</TextBlock>
+                        <TextBlock Grid.Column="2" Grid.Row="0">Priority</TextBlock>
 
-                                        <CheckBox Grid.Column="0" IsChecked="{ Binding IsDone, Mode=TwoWay}"/>
-                                        <TextBox Grid.Column="1" Text="{ Binding Text }"/>
-                                        <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
+                        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+                            <ListView ItemsSource="{Binding CurrentTaskList }">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid HorizontalAlignment="Stretch">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox Grid.Column="0" IsChecked="{ Binding IsDone, Mode=TwoWay}"/>
+                                            <TextBox Grid.Column="1" Text="{ Binding Text }"/>
+                                            <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
                                                                                         AncestorType={x:Type Window}}, 
                                                                                         Path=DataContext.Priorities}"></ComboBox>
-                                        <Button Grid.Column="3" CommandParameter="{ Binding Path=.}"  Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                            <Button Grid.Column="3" CommandParameter="{ Binding Path=.}"  Command="{Binding RelativeSource={RelativeSource FindAncestor,
                                                                                         AncestorType={x:Type Window}}, 
                                                                                         Path=DataContext.DeleteCommand}">Delete</Button>
 
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </ScrollViewer>
-                </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollViewer>
 
-                <!-- Row 5 -->
+                    </Grid>
+                </Border>
+                
+
+                <!-- Row 4 -->
                 <WrapPanel Grid.Row="4">
                     <Button Command="{ Binding AddCommand }">
 

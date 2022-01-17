@@ -62,30 +62,88 @@
     </Style>
     
     <!-- ComboBox Template -->
-    <!--<Style TargetType="ComboBox">
+    <Style TargetType="{x:Type ComboBox}">
         <Style.Setters>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate>
-                        <StackPanel>
-                            <Border>
-                                <TextBlock Name="PART_EditableTextBox">
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <ToggleButton
+                                Name="ToggleButton"
+                                BorderBrush="Transparent"
+                                Background="Transparent"
+                                Foreground="{TemplateBinding Foreground}"
+                                Focusable="false"
+                                IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                                ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter
+                                Name="ContentSite"
+                                IsHitTestVisible="False"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                Margin="0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+                            <TextBox x:Name="PART_EditableTextBox"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="0"
+                                Focusable="True"                               
+                                Visibility="Hidden"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup
+                                Name="Popup"
+                                Placement="Bottom"
+                                IsOpen="{TemplateBinding IsDropDownOpen}"
+                                AllowsTransparency="True"
+                                Focusable="False"
+                                PopupAnimation="Slide">
+                                <Border Margin="30"
+                                        Background="#E7E7E7"
+                                        BorderThickness="2"
+                                        CornerRadius="5">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0"  BlurRadius="12" Direction="270" Color="#000000" Opacity="0.3"/>
+                                    </Border.Effect>
 
-                                </TextBlock>
-                            </Border>
-                            <Popup x:Name="PART_Popup"
-                                   Placement="Bottom"
-                                   Focusable="False" AllowsTransparency="True"
-                                   IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
-                                   PopupAnimation="Slide">
-
+                                    <Grid
+                                    Name="DropDown"
+                                    SnapsToDevicePixels="True"               
+                                    MinWidth="{TemplateBinding ActualWidth}"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <ScrollViewer SnapsToDevicePixels="True">
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Grid>
+                                </Border>
+                                
                             </Popup>
-                        </StackPanel>
-                        
+                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
-    </Style>-->
-    
+    </Style>
+
+    <Style TargetType="{x:Type ComboBoxItem}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                        <Border BorderThickness="2" Padding="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+
+
+
+
+
 </ResourceDictionary>

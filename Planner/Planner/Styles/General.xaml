@@ -14,6 +14,19 @@
         </Style.Setters>
     </Style>
 
+    <Style x:Key="TaskBoard" TargetType="Border">
+        <Style.Setters>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="White"/>
+
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Direction="270" BlurRadius="30" ShadowDepth="15" Opacity="0.15" Color="#007C67"/>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
    
 
 </ResourceDictionary>
