@@ -16,9 +16,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            
             <!-- Todo List Section -->
-            <Grid>
+            <Grid Margin="0 0 20 0">
                 <Grid.RowDefinitions>
                     <RowDefinition MaxHeight="50"/>
                     <RowDefinition MaxHeight="40"/>
@@ -44,9 +43,9 @@
                 <Border Grid.Row="2" Style="{ StaticResource TaskBoard }">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="50"/>
                             <RowDefinition/>
-                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
@@ -118,19 +117,16 @@
                                     Margin="20 0">+</Button>
                             </Border>
                         </Grid>
-                        
+
                     </Grid>
                 </Border>
-                
-
-                <!-- Row 4 -->
-                
             </Grid>
 
             <!-- Calendar Section -->
-            <Grid Grid.Column="1">
-                <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" 
-                          SelectedDate="{ Binding SelectedDate }">
+            <Grid Grid.Column="1" Margin="20 0 0 0">
+                <Calendar HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                          SelectedDate="{ Binding SelectedDate }"
+                          Style="{StaticResource styleDatePickerCalendar}">
                     
                 </Calendar>
             </Grid>
