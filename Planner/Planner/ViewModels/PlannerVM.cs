@@ -17,6 +17,7 @@ namespace Planner.ViewModels
         private ObservableCollection<TaskVM> currentTaskList;
         private RelayCommand addCommand;
         private RelayCommand deleteCommand;
+        private RelayCommand closeWindowCommand;
         private DateTime selectedDate;
 
         public ObservableCollection<TaskVM> TaskList
@@ -50,6 +51,13 @@ namespace Planner.ViewModels
                 return deleteCommand;
             }
         }
+        public RelayCommand CloseWindowCommand
+        {
+            get
+            {
+                return closeWindowCommand;
+            }
+        }
         public DateTime SelectedDate
         {
             get { return selectedDate; }
@@ -79,6 +87,7 @@ namespace Planner.ViewModels
 
             addCommand = new RelayCommand(AddTask);
             deleteCommand = new RelayCommand(DeleteTask);
+            closeWindowCommand = new RelayCommand(CloseWindow);
         }
 
         private void AddTask(object obj)
@@ -95,6 +104,10 @@ namespace Planner.ViewModels
                 TaskList.Remove((TaskVM)obj);
             }
         }
+        private void CloseWindow(object obj)
+        {
+            ((Window)obj).Close();
+        }
         private void SetTasksByDate(DateTime date)
         {
             CurrentTaskList.Clear();
@@ -106,7 +119,6 @@ namespace Planner.ViewModels
                     CurrentTaskList.Add(task);
                 }
             }
-
         }
 
 

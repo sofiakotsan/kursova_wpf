@@ -274,7 +274,7 @@
                         <Border Background="#fff"
                             BorderThickness="1"
                             Padding="3"
-                            CornerRadius="10" Height="500">
+                            CornerRadius="10">
                             <Border.Effect>
                                 <DropShadowEffect Direction="270" BlurRadius="30" ShadowDepth="15" Opacity="0.15" Color="#007C67"/>
                             </Border.Effect>
@@ -308,7 +308,7 @@
                                 </DockPanel>
                                 <Grid Grid.Column="0"
                               Grid.Row="1"
-                              VerticalAlignment="Center"
+                              VerticalAlignment="Stretch"
                               HorizontalAlignment="Center">
                                     <Grid x:Name="PART_MonthView">
                                         <Grid.RowDefinitions>

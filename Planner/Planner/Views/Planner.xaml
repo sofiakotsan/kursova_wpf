@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Planner.Views"
         mc:Ignorable="d"
-        Title="Planner" Height="600" Width="900"
+        Title="Planner" Height="520" Width="800"
         FontSize="{ StaticResource RegularFontSize }"
         FontFamily="{ StaticResource MainFont }"
-        Foreground="{ StaticResource MainTextColor }">
-    <Border Background="{ StaticResource PlannerBackground }" Padding="30">
+        Foreground="{ StaticResource MainTextColor }"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
+    <Border Background="{ StaticResource PlannerBackground }" 
+            Padding="30"
+            CornerRadius="15">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -17,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Todo List Section -->
-            <Grid Margin="0 0 20 0">
+            <Grid Margin="0 0 15 0">
                 <Grid.RowDefinitions>
                     <RowDefinition MaxHeight="50"/>
                     <RowDefinition MaxHeight="40"/>
@@ -123,8 +129,18 @@
             </Grid>
 
             <!-- Calendar Section -->
-            <Grid Grid.Column="1" Margin="20 0 0 0">
-                <Calendar HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+            <Grid Grid.Column="1" Margin="15 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <WrapPanel HorizontalAlignment="Right">
+                    <Button Command="{Binding CloseWindowCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, 
+                           AncestorType={x:Type Window}}}">x</Button>
+                </WrapPanel>
+                <Calendar Grid.Row="1"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                           SelectedDate="{ Binding SelectedDate }"
                           Style="{StaticResource styleDatePickerCalendar}">
                     
