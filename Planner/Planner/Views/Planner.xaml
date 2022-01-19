@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Planner.Views"
         mc:Ignorable="d"
-        Title="Planner" Height="520" Width="800"
+        Title="Planner" Height="570" Width="860"
         FontSize="{ StaticResource RegularFontSize }"
         FontFamily="{ StaticResource MainFont }"
         Foreground="{ StaticResource MainTextColor }"
@@ -15,7 +15,11 @@
         WindowStartupLocation="CenterScreen">
     <Border Background="{ StaticResource PlannerBackground }" 
             Padding="30"
-            CornerRadius="15">
+            CornerRadius="15"
+            Margin="30">
+        <Border.Effect>
+            <DropShadowEffect Direction="270" BlurRadius="30" ShadowDepth="15" Opacity="0.4" Color="#007C67"/>
+        </Border.Effect>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -137,7 +141,8 @@
                 <WrapPanel HorizontalAlignment="Right">
                     <Button Command="{Binding CloseWindowCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, 
-                           AncestorType={x:Type Window}}}">x</Button>
+                           AncestorType={x:Type Window}}}"
+                            Style="{StaticResource CloseButtonStyle}">x</Button>
                 </WrapPanel>
                 <Calendar Grid.Row="1"
                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 

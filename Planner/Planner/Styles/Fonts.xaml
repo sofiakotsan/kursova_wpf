@@ -8,7 +8,8 @@
     <System:Double x:Key="RegularFontSize">14</System:Double>
     <System:Double x:Key="TitleFontSize">22</System:Double>
 
-    <System:Double x:Key="CalendarWeekDayFontSize">18</System:Double>
+    <System:Double x:Key="CalendarDateFontSize">18</System:Double>
+    <System:Double x:Key="CalendarWeekDayFontSize">14</System:Double>
     <System:Double x:Key="CalendarDayFontSize">22</System:Double>
     
     
