@@ -21,36 +21,37 @@
             <DropShadowEffect Direction="270" BlurRadius="30" ShadowDepth="15" Opacity="0.4" Color="#007C67"/>
         </Border.Effect>
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
+
+            <WrapPanel Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Right">
+                <TextBlock>Sort by:</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem IsSelected="True">Added</ComboBoxItem>
+                    <ComboBoxItem>Priority</ComboBoxItem>
+                </ComboBox>
+            </WrapPanel>
+
+            <WrapPanel Grid.Row="0"  Grid.Column="1" HorizontalAlignment="Right">
+                <Button Style="{StaticResource CloseButtonStyle}" Margin="0 0 5 0">Settings</Button>
+
+                <Button Command="{Binding CloseWindowCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, 
+                           AncestorType={x:Type Window}}}"
+                            Style="{StaticResource CloseButtonStyle}">x</Button>
+            </WrapPanel>
+
             <!-- Todo List Section -->
-            <Grid Margin="0 0 15 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition MaxHeight="50"/>
-                    <RowDefinition MaxHeight="40"/>
-
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <!-- Row 1 -->
-                <TextBlock Grid.Row="0" 
-                           Text="{Binding SelectedDate, StringFormat=D }"
-                           Style="{ StaticResource TitleStyle }"></TextBlock>
-
-                <!-- Row 2 -->
-                <WrapPanel Grid.Row="1" HorizontalAlignment="Right">
-                    <TextBlock>Sort by:</TextBlock>
-                    <ComboBox>
-                        <ComboBoxItem IsSelected="True">Added</ComboBoxItem>
-                        <ComboBoxItem>Priority</ComboBoxItem>
-                    </ComboBox>
-                </WrapPanel>
-
-                <!-- Row 3 -->
-                <Border Grid.Row="2" Style="{ StaticResource TaskBoard }">
+            <Grid Margin="0 0 15 0" Grid.Row="1">
+                <Border Grid.Row="21" Style="{ StaticResource TaskBoard }">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
@@ -103,13 +104,17 @@
                                                                                     AncestorType={x:Type Window}}, 
                                                                                     Path=DataContext.Priorities}"></ComboBox>
                                             <Button Grid.Column="3" 
+                                                    VerticalAlignment="Center"
                                                 CommandParameter="{ Binding Path=.}"  
                                                 Command="{Binding RelativeSource={RelativeSource FindAncestor,
                                                                                     AncestorType={x:Type Window}}, 
                                                                                     Path=DataContext.DeleteCommand}"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent">
-                                                <Image Source="/../Resources/Images/delete-button.png" Height="15" Opacity="0.5"/>
+                                                <Image Source="/../Resources/Images/delete-button.png" 
+                                                       Height="15" 
+                                                       Opacity="0.5"
+                                                       VerticalAlignment="Center"/>
                                             </Button>
 
                                         </Grid>
@@ -133,17 +138,7 @@
             </Grid>
 
             <!-- Calendar Section -->
-            <Grid Grid.Column="1" Margin="15 0 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <WrapPanel HorizontalAlignment="Right">
-                    <Button Command="{Binding CloseWindowCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, 
-                           AncestorType={x:Type Window}}}"
-                            Style="{StaticResource CloseButtonStyle}">x</Button>
-                </WrapPanel>
+            <Grid Grid.Column="1" Grid.Row="1" Margin="15 0 0 0">
                 <Calendar Grid.Row="1"
                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                           SelectedDate="{ Binding SelectedDate }"

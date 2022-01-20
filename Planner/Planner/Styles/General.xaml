@@ -35,15 +35,49 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="CloseButtonStyle" TargetType="{ x:Type Button }">
+    <Style TargetType="{ x:Type Button }">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{ x:Type Button }">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}"
+                                Margin="{TemplateBinding Margin}"
+                                >
+                            <TextBlock Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}">
+                                <ContentPresenter/>
+
+                            </TextBlock>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CloseButtonStyle" TargetType="{ x:Type Button }" BasedOn="{StaticResource { x:Type Button }}">
         <Style.Setters>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Padding" Value="10 4"/>
             <Setter Property="FontSize" Value="20"/>
         </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Source={StaticResource DarkAccentColor}, Path=Color}" Opacity="0.1"></SolidColorBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 
