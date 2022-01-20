@@ -33,9 +33,9 @@
 
 
             <WrapPanel Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Right">
-                <TextBlock>Sort by:</TextBlock>
-                <ComboBox>
-                    <ComboBoxItem IsSelected="True">Added</ComboBoxItem>
+                <TextBlock VerticalAlignment="Center">Sort by:</TextBlock>
+                <ComboBox Margin="10">
+                    <ComboBoxItem IsSelected="True" MinWidth="100">Added</ComboBoxItem>
                     <ComboBoxItem>Priority</ComboBoxItem>
                 </ComboBox>
             </WrapPanel>

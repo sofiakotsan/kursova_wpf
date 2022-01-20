@@ -101,7 +101,7 @@
                                 Focusable="False"
                                 PopupAnimation="Slide">
                                 <Border Margin="30"
-                                        Background="#E7E7E7"
+                                        Background="White"
                                         BorderThickness="2"
                                         CornerRadius="5">
                                     <Border.Effect>
@@ -114,11 +114,11 @@
                                     MinWidth="{TemplateBinding ActualWidth}"
                                     MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                         <ScrollViewer SnapsToDevicePixels="True">
-                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                            <StackPanel  x:Name="item" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
                                         </ScrollViewer>
                                     </Grid>
                                 </Border>
-                                
+
                             </Popup>
                         </Grid>
                     </ControlTemplate>
