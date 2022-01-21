@@ -76,7 +76,7 @@
                                       Grid.ColumnSpan="4"
                                       VerticalScrollBarVisibility="Auto" 
                                       Padding="10 3">
-                            <ListView ItemsSource="{Binding CurrentTaskList }"
+                            <ListView ItemsSource="{Binding Tasks }"
                                     BorderBrush="Transparent"
                                     Foreground="Transparent" SelectionChanged="ListView_SelectionChanged">
                                 <ListView.ItemContainerStyle>
@@ -86,7 +86,6 @@
                                         </Style.Setters>
                                     </Style>
                                 </ListView.ItemContainerStyle>
-
                             </ListView>
                         </ScrollViewer>
 

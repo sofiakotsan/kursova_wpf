@@ -12,12 +12,13 @@ namespace Planner.Models
         Medium,
         High
     }
+    [Serializable]
     public class Task
     {
         private string text;
         private DateTime date;
         private TaskPriority priority;
-        private string id;
+        private int id;
 
 
         public string Text
@@ -46,10 +47,10 @@ namespace Planner.Models
             set { isDone = value; }
         }
 
-        public string Id
+        public int Id
         {
             get { return id; }
-            private set { id = value; }
+            set { id = value; }
         }
 
 
@@ -60,7 +61,8 @@ namespace Planner.Models
 
         public Task(string text, DateTime date, TaskPriority priority, bool isDone)
         {
-            Id = Guid.NewGuid().ToString("N");
+            Id = 0;
+            //Id = Guid.NewGuid().ToString("N");
             Text = text;
             Date = date;
             Priority = priority;

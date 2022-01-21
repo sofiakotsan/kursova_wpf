@@ -5,9 +5,10 @@ using System.Text;
 //using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Planner.Models;
-
 using System.Windows;
-
+using System.ComponentModel;
+using System.Data.Entity;
+using System.Runtime.CompilerServices;
 
 namespace Planner.ViewModels
 {
@@ -19,6 +20,16 @@ namespace Planner.ViewModels
         private RelayCommand deleteCommand;
         private RelayCommand closeWindowCommand;
         private DateTime selectedDate;
+        private ApplicationContext db;
+
+        private IEnumerable<TaskVM> tasks;
+
+        public IEnumerable<TaskVM> Tasks
+        {
+            get { return tasks; }
+            set { tasks = value; }
+        }
+
 
         public ObservableCollection<TaskVM> TaskList
         {
@@ -80,6 +91,10 @@ namespace Planner.ViewModels
                 new TaskVM(new Task("task 6")),
             };
 
+            db = new ApplicationContext();
+            db.Tasks.Load();
+            Tasks = db.Tasks.Local.ToBindingList();
+
             CurrentTaskList = new ObservableCollection<TaskVM>();
 
             SelectedDate = DateTime.Today;
@@ -95,6 +110,9 @@ namespace Planner.ViewModels
             TaskVM newTask = new TaskVM(new Task("New Task"));
             TaskList.Add(newTask);
             CurrentTaskList.Add(newTask);
+
+            db.Tasks.Add(new TaskVM(new Task("New Task")));
+            db.SaveChanges();
         }
         private void DeleteTask(object obj)
         {
@@ -102,6 +120,9 @@ namespace Planner.ViewModels
             {
                 CurrentTaskList.Remove((TaskVM)obj);
                 TaskList.Remove((TaskVM)obj);
+
+                db.Tasks.Remove((TaskVM)obj);
+                db.SaveChanges();
             }
         }
         private void CloseWindow(object obj)

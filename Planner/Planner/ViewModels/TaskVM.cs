@@ -4,23 +4,27 @@ using System.Linq;
 using System.Text;
 //using System.Threading.Tasks;
 using Planner.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Planner.ViewModels
 {
-    class TaskVM : VMBase
+
+    [Table("Tasks")]
+    public class TaskVM : VMBase
     {
         private Task task;
 
-        public Task Task
+        /*public Task Task
         {
             get { return task; }
             private set { task = value; }
-        }
+        }*/
 
         public string Text
         {
             get { return task.Text; }
-            set 
+            set
             {
                 task.Text = value;
                 OnPropertyChanged("Text");
@@ -57,28 +61,31 @@ namespace Planner.ViewModels
             }
         }
 
-        public string Id
+        [Key]
+        public int Id
         {
             get { return task.Id; }
+            set { task.Id = value; }
         }
 
-        private bool isEdited;
+        /*private bool isEdited;
 
         public bool IsEdited
         {
             get { return isEdited; }
-            set 
-            { 
+            set
+            {
                 isEdited = value;
                 OnPropertyChanged("isEdited");
             }
-        }
+        }*/
 
+        public TaskVM() : this(new Task()) {}
 
-        public TaskVM(Task task, bool isEdited = false)
+        public TaskVM(Task task/*, bool isEdited = false*/)
         {
-            Task = task;
-            IsEdited = isEdited;
+            this.task = task;
+            //IsEdited = isEdited;
         }
 
     }

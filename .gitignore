@@ -3,6 +3,7 @@
 *.config
 *.pdb
 /Planner/.vs
+/Planner/packages
 /Planner/Planner/bin
 /Planner/Planner/obj
 /Planner/Planner/Properties
