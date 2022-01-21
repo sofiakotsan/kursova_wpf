@@ -78,48 +78,15 @@
                                       Padding="10 3">
                             <ListView ItemsSource="{Binding CurrentTaskList }"
                                     BorderBrush="Transparent"
-                                    Foreground="Transparent">
+                                    Foreground="Transparent" SelectionChanged="ListView_SelectionChanged">
                                 <ListView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListViewItem}">
-                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource TaskItemTmplate}">
+                                        <Style.Setters>
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        </Style.Setters>
                                     </Style>
                                 </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid HorizontalAlignment="Stretch" Height="30">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="30"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="30"/>
-                                            </Grid.ColumnDefinitions>
 
-                                            <CheckBox Grid.Column="0" 
-                                                    IsChecked="{ Binding IsDone, Mode=TwoWay}" 
-                                                    VerticalAlignment="Center"/>
-                                            <Border CornerRadius="10" Grid.Column="1" BorderThickness="1" BorderBrush="Transparent">
-                                                <TextBox Text="{ Binding Text, Mode=TwoWay }"/>
-                                            </Border>
-                                            <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority, Mode=TwoWay }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
-                                                                                    AncestorType={x:Type Window}}, 
-                                                                                    Path=DataContext.Priorities}"></ComboBox>
-                                            <Button Grid.Column="3" 
-                                                    VerticalAlignment="Center"
-                                                CommandParameter="{ Binding Path=.}"  
-                                                Command="{Binding RelativeSource={RelativeSource FindAncestor,
-                                                                                    AncestorType={x:Type Window}}, 
-                                                                                    Path=DataContext.DeleteCommand}"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent">
-                                                <Image Source="/../Resources/Images/delete-button.png" 
-                                                       Height="15" 
-                                                       Opacity="0.5"
-                                                       VerticalAlignment="Center"/>
-                                            </Button>
-
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
                             </ListView>
                         </ScrollViewer>
 

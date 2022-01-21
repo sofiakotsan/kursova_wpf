@@ -5,7 +5,85 @@
         <ResourceDictionary Source="General.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-     <!-- CheckBox Template  -->
+    <!-- Textbox Template  -->
+    <Style x:Key="TaskTextBoxTemlate" TargetType="{x:Type TextBox}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate  TargetType="{x:Type TextBox}">
+                        <Border Name="border" 
+                                Padding="5"
+                                Margin="3 0"
+                                CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="White" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <!-- ListViewItem Template  -->
+    <Style x:Key="TaskItemTmplate" TargetType="{x:Type ListViewItem}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border Name="border" 
+                                Padding="10 4 3 4"
+                                Margin="0 0 5 7"
+                                CornerRadius="7"
+                                Background="#F9F9F9">
+                            <Grid HorizontalAlignment="Stretch" Height="30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox Grid.Column="0" 
+                                                    IsChecked="{ Binding IsDone, Mode=TwoWay}" 
+                                                    VerticalAlignment="Center"/>
+                                <Border CornerRadius="10" Grid.Column="1" BorderThickness="1" BorderBrush="Transparent">
+                                    <TextBox Text="{ Binding Text, Mode=TwoWay }" Style="{StaticResource TaskTextBoxTemlate}"/>
+                                </Border>
+                                <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority, Mode=TwoWay }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType={x:Type Window}}, 
+                                                                                    Path=DataContext.Priorities}"></ComboBox>
+                                <Button Grid.Column="3" 
+                                                    VerticalAlignment="Center"
+                                                CommandParameter="{ Binding Path=.}"  
+                                                Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType={x:Type Window}}, 
+                                                                                    Path=DataContext.DeleteCommand}"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent">
+                                    <Image Source="/../Resources/Images/delete-button.png" 
+                                                       Height="15" 
+                                                       Opacity="0.5"
+                                                       VerticalAlignment="Center"/>
+                                </Button>
+                            </Grid>
+                        </Border>
+                        
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F2F2F2" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <!-- CheckBox Template  -->
     <Style TargetType="CheckBox">
         <Style.Setters>
             <Setter Property="Template">
@@ -68,38 +146,35 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ComboBox}">
                         <Grid>
-                            <ToggleButton
-                                Name="ToggleButton"
-                                BorderBrush="Transparent"
-                                Background="Transparent"
-                                Foreground="{TemplateBinding Foreground}"
-                                Focusable="false"
-                                IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
-                                ClickMode="Press">
+                            <ToggleButton Name="ToggleButton"
+                                        BorderBrush="Transparent"
+                                        Background="Transparent"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Focusable="false"
+                                        IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                                        ClickMode="Press">
                             </ToggleButton>
-                            <ContentPresenter
-                                Name="ContentSite"
-                                IsHitTestVisible="False"
-                                Content="{TemplateBinding SelectionBoxItem}"
-                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                Margin="0"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center" />
+                            <ContentPresenter Name="ContentSite"
+                                            IsHitTestVisible="False"
+                                            Content="{TemplateBinding SelectionBoxItem}"
+                                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                            Margin="0"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" />
                             <TextBox x:Name="PART_EditableTextBox"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Margin="0"
-                                Focusable="True"                               
-                                Visibility="Hidden"
-                                IsReadOnly="{TemplateBinding IsReadOnly}"/>
-                            <Popup
-                                Name="Popup"
-                                Placement="Bottom"
-                                IsOpen="{TemplateBinding IsDropDownOpen}"
-                                AllowsTransparency="True"
-                                Focusable="False"
-                                PopupAnimation="Slide">
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Margin="0"
+                                    Focusable="True"                               
+                                    Visibility="Hidden"
+                                    IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup  Name="Popup"
+                                    Placement="Bottom"
+                                    IsOpen="{TemplateBinding IsDropDownOpen}"
+                                    AllowsTransparency="True"
+                                    Focusable="False"
+                                    PopupAnimation="Slide">
                                 <Border Margin="30"
                                         Background="White"
                                         BorderThickness="2"
@@ -108,11 +183,10 @@
                                         <DropShadowEffect ShadowDepth="0"  BlurRadius="12" Direction="270" Color="#000000" Opacity="0.3"/>
                                     </Border.Effect>
 
-                                    <Grid
-                                    Name="DropDown"
-                                    SnapsToDevicePixels="True"               
-                                    MinWidth="{TemplateBinding ActualWidth}"
-                                    MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Grid Name="DropDown"
+                                        SnapsToDevicePixels="True"               
+                                        MinWidth="{TemplateBinding ActualWidth}"
+                                        MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                         <ScrollViewer SnapsToDevicePixels="True">
                                             <StackPanel  x:Name="item" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
                                         </ScrollViewer>
@@ -127,20 +201,27 @@
         </Style.Setters>
     </Style>
 
+    <!-- ComboBoxItem Template -->
     <Style TargetType="{x:Type ComboBoxItem}">
         <Style.Setters>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                        <Border BorderThickness="2" Padding="3">
+                        <Border x:Name="border" BorderThickness="2" Padding="3" Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#EEEEEE" TargetName="border"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
     </Style>
 
+    <!-- ScrollBar Thumb Template -->
     <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="IsTabStop" Value="false"/>
@@ -164,10 +245,10 @@
         </Setter>
     </Style>
 
+    <!-- ScrollBar Template -->
     <Style x:Key="ViewerScrollBar"  TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
-
         <Setter Property="Width" Value="14"/>
         <Setter Property="Margin" Value="-14 0 0 0" />
         <Setter Property="MinWidth" Value="{Binding Height, RelativeSource={RelativeSource Self}}"/>
@@ -198,6 +279,7 @@
         </Setter>
     </Style>
 
+    <!-- ScrollViewer Template -->
     <Style TargetType="{ x:Type ScrollViewer }">
         <Style.Setters>
             <Setter Property="Template">
@@ -224,12 +306,14 @@
         </Style.Setters>
     </Style>
 
+    <!-- "Add" Button Template -->
     <Style x:Key="AddButtonStyle" TargetType="{ x:Type Button }">
         <Style.Setters>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate  TargetType="{ x:Type Button }">
-                        <Border Height="30"
+                        <Border x:Name="border" 
+                                Height="30"
                                 Width="30"
                                 Background="{ StaticResource BrightAccentColorBrush }" 
                                 CornerRadius="15">
@@ -245,14 +329,22 @@
                                 <DropShadowEffect x:Name="ButtonShadow" ShadowDepth="0" Color="{ StaticResource BrightAccentColor }" BlurRadius="10"/>
                             </Border.Effect>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect" TargetName="border">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="{ StaticResource BrightAccentColor }" BlurRadius="20"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
     </Style>
 
-
-    <!-- Calendar Style -->
+    <!-- Calendar Template -->
     <Style x:Key="styleDatePickerCalendarItem" TargetType="{x:Type CalendarItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -287,40 +379,45 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <DockPanel Grid.Column="0"
-                                   Grid.Row="0"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Stretch"
-                                   LastChildFill="True">
+                                           Grid.Row="0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Stretch"
+                                           LastChildFill="True">
                                     <Button x:Name="PART_PreviousButton"
-                                    DockPanel.Dock="Left"
-                                    Width="30"
-                                    Content="&lt;"
-                                    Focusable="False"
-                                    FontSize="{StaticResource CalendarDateFontSize}"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent"></Button>
+                                            DockPanel.Dock="Left"
+                                            Padding="15 0"
+                                            Content="&lt;"
+                                            Focusable="False"
+                                            HorizontalAlignment="Center"
+                                            FontSize="{StaticResource CalendarDateFontSize}"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent">
+                                      
+                                    </Button>
                                     <Button x:Name="PART_NextButton"
-                                    FontSize="{StaticResource CalendarDateFontSize}"
-                                    DockPanel.Dock="Right"
-                                    Width="30"
-                                    Content="&gt;" Focusable="False"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent">
+                                            FontSize="{StaticResource CalendarDateFontSize}"
+                                            DockPanel.Dock="Right"
+                                            Padding="15 0"
+                                            Content="&gt;" Focusable="False"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            HorizontalAlignment="Center">
+
                                     </Button>
                                     <Button x:Name="PART_HeaderButton"
-                                    Width="150"
-                                    MaxWidth="150"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent"
-                                    FontSize="{StaticResource CalendarDateFontSize}"
-                                            Padding="0 10">
+                                            Background="Transparent"
+                                            Padding="15 10"
+                                            BorderBrush="Transparent"
+                                            HorizontalAlignment="Center"
+                                            FontSize="{StaticResource CalendarDateFontSize}">
+                                        
                                     </Button>
                                 </DockPanel>
                                 <Grid Grid.Column="0"
-                              Grid.Row="1"
-                              VerticalAlignment="Stretch"
-                              HorizontalAlignment="Center">
-                                    <Grid x:Name="PART_MonthView">
+                                      Grid.Row="1"
+                                      VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Center">
+                                        <Grid x:Name="PART_MonthView">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
@@ -367,6 +464,7 @@
         </Setter>
     </Style>
 
+    <!-- Calendar Controls Template -->
     <Style x:Key="styleDatePickerCalendarButton" TargetType="{x:Type CalendarButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
         <Setter Property="Template">
@@ -428,7 +526,7 @@
         </Setter>
     </Style>
 
-
+    <!-- Calendar Day Button Template -->
     <Style x:Key="styleDatePickerCalendarDayButton" TargetType="{x:Type CalendarDayButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
         <Setter Property="Template">
@@ -509,6 +607,7 @@
         </Setter>
     </Style>
 
+    <!-- Calendar Stylw -->
     <Style x:Key="styleDatePickerCalendar" TargetType="{x:Type Calendar}">
         <Setter Property="CalendarButtonStyle"
             Value="{StaticResource ResourceKey=styleDatePickerCalendarButton}">

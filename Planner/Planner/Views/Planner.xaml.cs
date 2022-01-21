@@ -26,5 +26,10 @@ namespace Planner.Views
             this.DataContext = new PlannerVM();
 
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

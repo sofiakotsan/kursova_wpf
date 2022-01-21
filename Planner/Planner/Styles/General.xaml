@@ -49,7 +49,9 @@
                                 >
                             <TextBlock Foreground="{TemplateBinding Foreground}"
                                        FontSize="{TemplateBinding FontSize}"
-                                       FontFamily="{TemplateBinding FontFamily}">
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
                                 <ContentPresenter/>
 
                             </TextBlock>
