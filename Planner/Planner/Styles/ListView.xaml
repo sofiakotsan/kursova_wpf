@@ -63,7 +63,9 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </ComboBox>
-                                <Border Name="deleteBorder"   Grid.Column="3">
+                                <Border Name="deleteBorder"   
+                                        Grid.Column="3"
+                                        CornerRadius="7">
                                     <Button
                                         Margin="3 0"
                                         VerticalAlignment="Center"
@@ -89,7 +91,8 @@
                                 <Setter Property="Background" Value="#F2F2F2" TargetName="border"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True" SourceName="deleteBorder">
-                                <Setter Property="Background" Value="red" TargetName="deleteBorder"/>
+                                <Setter Property="Background" Value="#E7E7E7" TargetName="deleteBorder"/>
+                                <Setter Property="Opacity" Value="1" TargetName="deleteIcon"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

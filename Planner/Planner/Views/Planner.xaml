@@ -14,11 +14,6 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
-    <Window.CommandBindings>
-        <CommandBinding>
-            
-        </CommandBinding>
-    </Window.CommandBindings>
     <Border Background="{ StaticResource PlannerBackground }" 
             Padding="30 0 30 30"
             CornerRadius="15"
@@ -36,15 +31,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
-
-            <!--<WrapPanel Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Right">
-                <TextBlock VerticalAlignment="Center">Sort by:</TextBlock>
-                <ComboBox Margin="10">
-                    <ComboBoxItem IsSelected="True" MinWidth="100">Added</ComboBoxItem>
-                    <ComboBoxItem>Priority</ComboBoxItem>
-                </ComboBox>
-            </WrapPanel>-->
 
             <WrapPanel Grid.Row="0"  
                        Grid.Column="1" 
