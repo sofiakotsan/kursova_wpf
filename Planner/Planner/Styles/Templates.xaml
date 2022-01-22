@@ -50,7 +50,15 @@
 
                                 <CheckBox Grid.Column="0" 
                                                     IsChecked="{ Binding IsDone, Mode=TwoWay}" 
-                                                    VerticalAlignment="Center"/>
+                                                    VerticalAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType={x:Type Window}}, 
+                                                                                    Path=DataContext.EditCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </CheckBox>
                                 <Border CornerRadius="10" Grid.Column="1" BorderThickness="1" BorderBrush="Transparent">
                                     <TextBox x:Name="taskText" Text="{ Binding Text, Mode=TwoWay }" 
                                              Style="{StaticResource TaskTextBoxTemlate}" >
@@ -64,43 +72,46 @@
                                                                                     Path=DataContext.EditCommand}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                        <!--<TextBox.Triggers>
-                                            <EventTrigger RoutedEvent="TextChanged">
-                                                <EventTrigger.Actions>
-                                                    
-                                                </EventTrigger.Actions>
-                                            </EventTrigger>
-                                        </TextBox.Triggers>-->
-                                        
-                                        <!--<i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="KeyUp">
-                                                <i:InvokeDataCommand Command="{Binding MyCommand}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>-->
                                     </TextBox>
                                 </Border>
                                 <ComboBox Grid.Column="2" SelectedItem="{ Binding Priority, Mode=TwoWay }" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,
                                                                                     AncestorType={x:Type Window}}, 
-                                                                                    Path=DataContext.Priorities}"></ComboBox>
-                                <Button Grid.Column="3" 
-                                                    VerticalAlignment="Center"
-                                                CommandParameter="{ Binding Path=.}"  
-                                                Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                    Path=DataContext.Priorities}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType={x:Type Window}}, 
+                                                                                    Path=DataContext.EditCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                                <Border Name="deleteBorder"   Grid.Column="3">
+                                    <Button
+                                        Margin="3 0"
+                                        VerticalAlignment="Center"
+                                        CommandParameter="{ Binding Path=.}"  
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor,
                                                                                     AncestorType={x:Type Window}}, 
                                                                                     Path=DataContext.DeleteCommand}"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent">
-                                    <Image Source="/../Resources/Images/delete-button.png" 
-                                                       Height="15" 
-                                                       Opacity="0.5"
-                                                       VerticalAlignment="Center"/>
-                                </Button>
+                                        Background="Transparent"
+                                        BorderBrush="Transparent">
+                                        <Image Name="deleteIcon"
+                                           Source="/../Resources/Images/delete-button.png" 
+                                           Height="15" 
+                                           Opacity="0.5"
+                                           VerticalAlignment="Center"/>
+                                    </Button>
+                                </Border>
+                                
                             </Grid>
                         </Border>
                         
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#F2F2F2" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True" SourceName="deleteBorder">
+                                <Setter Property="Background" Value="red" TargetName="deleteBorder"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
