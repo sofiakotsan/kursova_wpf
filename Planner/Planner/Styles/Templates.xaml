@@ -429,7 +429,7 @@
                                             FontSize="{StaticResource CalendarDateFontSize}"
                                             Background="Transparent"
                                             BorderBrush="Transparent">
-                                      
+
                                     </Button>
                                     <Button x:Name="PART_NextButton"
                                             FontSize="{StaticResource CalendarDateFontSize}"
@@ -447,14 +447,14 @@
                                             BorderBrush="Transparent"
                                             HorizontalAlignment="Center"
                                             FontSize="{StaticResource CalendarDateFontSize}">
-                                        
+
                                     </Button>
                                 </DockPanel>
                                 <Grid Grid.Column="0"
                                       Grid.Row="1"
                                       VerticalAlignment="Stretch"
                                       HorizontalAlignment="Center">
-                                        <Grid x:Name="PART_MonthView">
+                                    <Grid x:Name="PART_MonthView">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
@@ -495,7 +495,23 @@
                             </Grid>
                         </Border>
                     </Viewbox>
-                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_DisabledVisual" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Calendar}}, Path=DisplayMode}" Value="Year">
+                            <Setter TargetName="PART_MonthView" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="PART_YearView" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Calendar}}, Path=DisplayMode}" Value="Decade">
+                            <Setter TargetName="PART_MonthView" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="PART_YearView" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Calendar}}, Path=DisplayMode}" Value="Month">
+                            <Setter TargetName="PART_MonthView" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_YearView" Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -528,7 +544,7 @@
                         <Trigger Property="IsInactive" Value="True">
                             <Setter TargetName="block"
                                 Property="Foreground"
-                                Value="Red">
+                                Value="Black">
                             </Setter>
                             <Setter Property="IsEnabled"
                                 Value="False">
