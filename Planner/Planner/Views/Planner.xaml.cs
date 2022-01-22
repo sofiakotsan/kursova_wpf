@@ -27,9 +27,9 @@ namespace Planner.Views
 
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            DragMove();
         }
     }
 }

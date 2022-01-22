@@ -12,13 +12,19 @@
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Window.CommandBindings>
+        <CommandBinding>
+            
+        </CommandBinding>
+    </Window.CommandBindings>
     <Border Background="{ StaticResource PlannerBackground }" 
-            Padding="30"
+            Padding="30 0 30 30"
             CornerRadius="15"
-            Margin="30">
+            Margin="30" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Border.Effect>
-            <DropShadowEffect Direction="270" BlurRadius="30" ShadowDepth="15" Opacity="0.4" Color="#007C67"/>
+            <DropShadowEffect Direction="270" BlurRadius="30" Opacity="0.4" Color="#007C67"/>
         </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
@@ -32,17 +38,19 @@
             </Grid.ColumnDefinitions>
 
 
-            <WrapPanel Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Right">
+            <!--<WrapPanel Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Right">
                 <TextBlock VerticalAlignment="Center">Sort by:</TextBlock>
                 <ComboBox Margin="10">
                     <ComboBoxItem IsSelected="True" MinWidth="100">Added</ComboBoxItem>
                     <ComboBoxItem>Priority</ComboBoxItem>
                 </ComboBox>
-            </WrapPanel>
+            </WrapPanel>-->
 
-            <WrapPanel Grid.Row="0"  Grid.Column="1" HorizontalAlignment="Right">
-                <Button Style="{StaticResource CloseButtonStyle}" Margin="0 0 5 0">Settings</Button>
-
+            <WrapPanel Grid.Row="0"  
+                       Grid.Column="1" 
+                       HorizontalAlignment="Right" 
+                       VerticalAlignment="Center"
+                       Margin="0 0 -20 0">
                 <Button Command="{Binding CloseWindowCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, 
                            AncestorType={x:Type Window}}}"
@@ -78,7 +86,7 @@
                                       Padding="10 3">
                             <ListView ItemsSource="{Binding CurrentTaskList }"
                                     BorderBrush="Transparent"
-                                    Foreground="Transparent" SelectionChanged="ListView_SelectionChanged">
+                                    Foreground="Transparent">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource TaskItemTmplate}">
                                         <Style.Setters>

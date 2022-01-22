@@ -10,6 +10,9 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
 
+using System.Collections.Specialized;
+
+
 namespace Planner.ViewModels
 {
     class PlannerVM : VMBase
@@ -18,6 +21,7 @@ namespace Planner.ViewModels
         private ObservableCollection<TaskVM> currentTaskList;
         private RelayCommand addCommand;
         private RelayCommand deleteCommand;
+        private RelayCommand editCommand;
         private RelayCommand closeWindowCommand;
         private DateTime selectedDate;
         private ApplicationContext db;
@@ -71,6 +75,14 @@ namespace Planner.ViewModels
                 return deleteCommand;
             }
         }
+
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return editCommand;
+            }
+        }
         public RelayCommand CloseWindowCommand
         {
             get
@@ -113,7 +125,13 @@ namespace Planner.ViewModels
 
             addCommand = new RelayCommand(AddTask);
             deleteCommand = new RelayCommand(DeleteTask);
+            editCommand = new RelayCommand(EditTask);
             closeWindowCommand = new RelayCommand(CloseWindow);
+
+
+
+
+            // currentTaskList.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => { MessageBox.Show("test"); };
         }
 
         private void AddTask(object obj)
@@ -138,6 +156,11 @@ namespace Planner.ViewModels
                 SetTasksByDate(SelectedDate);
             }
         }
+
+        private void EditTask(object obj)
+        {
+            db.SaveChanges();
+        }
         private void CloseWindow(object obj)
         {
             ((Window)obj).Close();
@@ -155,6 +178,9 @@ namespace Planner.ViewModels
                 CurrentTaskList.Add(task);
 
             }
+
+
+            
 
              //var val = CurrentTasks;
 
