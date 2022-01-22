@@ -84,7 +84,7 @@
                                       Grid.ColumnSpan="4"
                                       VerticalScrollBarVisibility="Auto" 
                                       Padding="10 3">
-                            <ListView ItemsSource="{Binding CurrentTaskList }"
+                            <ListView ItemsSource="{Binding CurrentTasks }"
                                     BorderBrush="Transparent"
                                     Foreground="Transparent">
                                 <ListView.ItemContainerStyle>

@@ -6,7 +6,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/Templates.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="Styles/TextElements.xaml"/>
+                <ResourceDictionary Source="Styles/CheckBoxes.xaml"/>
+                <ResourceDictionary Source="Styles/Calendar.xaml"/>
+                <ResourceDictionary Source="Styles/ComboBoxes.xaml"/>
+                <ResourceDictionary Source="Styles/ListView.xaml"/>
+                <ResourceDictionary Source="Styles/General.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

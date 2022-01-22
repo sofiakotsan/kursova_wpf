@@ -6,14 +6,6 @@
         <ResourceDictionary Source="Fonts.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="TitleStyle" TargetType="TextBlock">
-        <Style.Setters>
-            <Setter Property="FontSize" Value="{ StaticResource TitleFontSize }"/>
-            <Setter Property="FontFamily" Value="{ StaticResource AccentFont }"/>
-            <Setter Property="Foreground" Value="{ StaticResource DarkAccentColor }"/>
-        </Style.Setters>
-    </Style>
-
     <Style x:Key="TaskBoard" TargetType="Border">
         <Style.Setters>
             <Setter Property="CornerRadius" Value="10"/>
@@ -26,90 +18,5 @@
             </Setter>
         </Style.Setters>
     </Style>
-
-    <Style TargetType="{ x:Type TextBox }">
-        <Style.Setters>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="4"/>
-        </Style.Setters>
-    </Style>
-
-    <Style TargetType="{ x:Type Button }">
-        <Style.Setters>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{ x:Type Button }">
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5"
-                                Padding="{TemplateBinding Padding}"
-                                Margin="{TemplateBinding Margin}"
-                                >
-                            <TextBlock Foreground="{TemplateBinding Foreground}"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       FontFamily="{TemplateBinding FontFamily}"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center">
-                                <ContentPresenter/>
-
-                            </TextBlock>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style.Setters>
-    </Style>
-
-    <Style TargetType="{x:Type ToggleButton}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Border x:Name="border"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="5"
-                            Padding="4 2">
-                        <ContentPresenter x:Name="contentPresenter" 
-                                            ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                            Content="{TemplateBinding Content}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="{Binding Source={StaticResource DarkAccentColor}, Path=Color}" Opacity="0.15"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="CloseButtonStyle" TargetType="{ x:Type Button }" BasedOn="{StaticResource { x:Type Button }}">
-        <Style.Setters>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{StaticResource DarkAccentColor}"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="10 4"/>
-            <Setter Property="FontSize" Value="20"/>
-        </Style.Setters>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{Binding Source={StaticResource DarkAccentColor}, Path=Color}" Opacity="0.1"></SolidColorBrush>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-
-
 
 </ResourceDictionary>
